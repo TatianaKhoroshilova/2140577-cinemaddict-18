@@ -2,16 +2,16 @@ import UserProfileView from './view/user-profile-view.js';
 import FilterNavigationView from './view/filter-navigation-view.js';
 import FooterStatisticView from './view/footer-statistic-view-temp.js';
 import {render} from './render.js';
-import MoviesPresenter from './presenter/movie-presenter.js';
+import FilmPresenter from './presenter/film-presenter.js';
 
-const bodyEl = document.querySelector('body');
-const headerEl = bodyEl.querySelector('.header__logo');
-const mainEl = bodyEl.querySelector('main');
-const footerEl = bodyEl.querySelector('.footer__statistics');
-const filmsPresenter = new MoviesPresenter();
+const bodyElement = document.querySelector('body');
+const headerElement = bodyElement.querySelector('.header__logo');
+const mainElement = bodyElement.querySelector('main');
+const footerElement = bodyElement.querySelector('.footer__statistics');
+const filmsPresenter = new FilmPresenter();
 
-render (new UserProfileView(), headerEl);
-render (new FilterNavigationView(), mainEl);
-render (new FooterStatisticView(), footerEl);
+render (new UserProfileView(), headerElement);
+render (new FilterNavigationView(), mainElement);
+render (new FooterStatisticView(), footerElement);
 
-filmsPresenter.init(mainEl);
+filmsPresenter.init(mainElement);

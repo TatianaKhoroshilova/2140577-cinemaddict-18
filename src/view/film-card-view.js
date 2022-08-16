@@ -1,11 +1,7 @@
 import { createElement } from '../render.js';
 
-const createFilmsListTemplate = () => (`
-<section class="films-list">
-      <h2 class="films-list__title visually-hidden">All movies. Upcoming</h2>
-
-      <div class="films-list__container">
-        <article class="film-card">
+const createFilmCardTemplate = () => (`
+<article class="film-card">
           <a class="film-card__link">
             <h3 class="film-card__title">The Man with the Golden Arm</h3>
             <p class="film-card__rating">9.0</p>
@@ -24,13 +20,11 @@ const createFilmsListTemplate = () => (`
             <button class="film-card__controls-item film-card__controls-item--favorite" type="button">Mark as favorite</button>
           </div>
         </article>
-        </div>
-</section>
 `);
 
-export default class FilmsListView {
+export default class FilmCardView {
   getTemplate() {
-    return createFilmsListTemplate();
+    return createFilmCardTemplate();
   }
 
   getElement() {
@@ -45,3 +39,4 @@ export default class FilmsListView {
     this.element = null;
   }
 }
+
