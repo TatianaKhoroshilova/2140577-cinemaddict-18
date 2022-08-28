@@ -8,20 +8,22 @@ const createNavigationTemplate = () => (`  <nav class="main-navigation">
 </nav>`);
 
 export default class FilterNavigationView {
+  #element = null;
+
   getTemplate() {
     return createNavigationTemplate();
   }
 
   getElement() {
-    if(!this.element) {
-      this.element = createElement(this.getTemplate());
+    if(!this.#element) {
+      this.#element = createElement(this.getTemplate());
     }
 
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }
 

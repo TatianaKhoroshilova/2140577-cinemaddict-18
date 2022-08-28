@@ -1,12 +1,12 @@
 import dayjs from 'dayjs';
 import { yearsIssuancePeriod, description, countries, posters, titleOfFilm, genres, runTime,
-  ageCategoty, rating, names, surnames, amountOfGenresOfFilm, MAX_COMMENTS_FOR_FILM, NAME_AMOUNT, COUNT_OF_FILMS} from './const.js';
+  ageCategoty, RATING, names, surnames, AMOUNT_OF_GENRES_OF_FILM, MAX_COMMENTS_FOR_FILM, NAME_AMOUNT, COUNT_OF_FILMS} from './const.js';
 import { getRandomInteger, getRandomValue } from '../utils.js';
 
 const generateFilm = () => ({
   title: getRandomValue(titleOfFilm),
   alternativeTitle: getRandomValue(titleOfFilm),
-  totalRating: getRandomInteger(rating.MIN, rating.MAX),
+  totalRating: getRandomInteger(RATING.MIN, RATING.MAX),
   poster: getRandomValue(posters),
   ageRating: getRandomInteger(ageCategoty.MIN, ageCategoty.MAX),
   director: `${getRandomValue(names)} ${getRandomValue(surnames)}`,
@@ -17,7 +17,7 @@ const generateFilm = () => ({
     releaseCountry: getRandomValue(countries),
   },
   runtime: getRandomInteger(runTime.MIN, runTime.MAX),
-  genre: Array.from({length: getRandomInteger(amountOfGenresOfFilm.MIN, amountOfGenresOfFilm.MAX)}, () => getRandomValue(genres)),
+  genre: Array.from({length: getRandomInteger(AMOUNT_OF_GENRES_OF_FILM.MIN, AMOUNT_OF_GENRES_OF_FILM.MAX)}, () => getRandomValue(genres)),
   description: getRandomValue(description),
 });
 
