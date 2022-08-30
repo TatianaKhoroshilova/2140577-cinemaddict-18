@@ -4,12 +4,12 @@ const MAX_COMMENTS_FOR_FILM = 4;
 
 const COUNT_OF_FILMS = 5;
 
-const amountOfGenresOfFilm = {
+const AMOUNT_OF_GENRES_OF_FILM = {
   MIN: 1,
   MAX: 4
 };
 
-const rating = {
+const RATING = {
   MIN: 0,
   MAX: 10
 };
@@ -109,12 +109,12 @@ export {
   genres,
   runTime,
   ageCategoty,
-  rating,
+  RATING ,
   names,
   surnames,
   authors,
   yearsIssuancePeriod,
-  amountOfGenresOfFilm,
+  AMOUNT_OF_GENRES_OF_FILM,
   MAX_COMMENTS_FOR_FILM,
   NAME_AMOUNT,
   COUNT_OF_FILMS,
