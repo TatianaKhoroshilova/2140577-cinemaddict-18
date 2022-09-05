@@ -97,6 +97,7 @@ export default class FilmPresenter {
   };
 
   #renderFilmBoard = () => {
+    render(this.#moviesCard, this.#moviesList.element);
     render(this.#moviesList, this.#mainContainer);
     render(this.#moviesContainer, this.#moviesList.element);
 
