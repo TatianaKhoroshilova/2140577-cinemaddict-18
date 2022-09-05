@@ -109,7 +109,7 @@ export default class FilmPresenter {
     if(this.#films.length === 0){
       render(new FilmListEmptyView(), this.#mainContainer);
     } else {
-      render (new FilmsListView(), this.#mainContainer);
+      render (new FilmCardView(this.#films), this.#mainContainer);
     }
   }
 }
