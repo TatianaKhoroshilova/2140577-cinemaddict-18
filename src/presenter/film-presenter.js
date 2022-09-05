@@ -5,7 +5,7 @@ import FilmCardView from '../view/film-card-view.js';
 import FilmListEmptyView from '../view/film-list-empty-view.js';
 import { render } from '../render.js';
 import FilmDetailsView from '../view/film-details-view.js';
-import { STEP_PER_SCROLL } from '../const.js';
+import { FILM_COUNT, STEP_PER_SCROLL } from '../const.js';
 
 export default class FilmPresenter {
 
@@ -33,15 +33,6 @@ export default class FilmPresenter {
     this.#films = [...this.#filmsModel.get()];
 
     this.#renderFilmBoard();
-    // render (this.#moviesList, this.#mainContainer);
-    // render (this.#moviesContainer, this.#moviesList.element);
-    // render (this.#showMoreButton, this.#mainContainer);
-
-    // this.#films.forEach((film) => {
-    //   this.#renderFilm(film, this.#moviesContainer);
-    // });
-
-    // render (this.showMoreButton, this.moviesList.element);
   };
 
   #renderFilm(film, container) {
@@ -89,13 +80,13 @@ export default class FilmPresenter {
     }
   };
 
-  #showMoreButtonHandler(evt){
+  #showMoreButtonHandler = (evt) => {
     evt.preventDefault();
 
     this.#films
       .slice(this.#renderedFilmsCount, this.#renderedFilmsCount + STEP_PER_SCROLL)
       .forEach((film) => {
-        this.#renderFilm(film, this.#moviesList);
+        this.#renderFilm(film, this.#moviesList.element);
       });
 
     this.#renderedFilmsCount += STEP_PER_SCROLL;
@@ -103,15 +94,20 @@ export default class FilmPresenter {
       this.#showMoreButton.element.remove();
       this.#showMoreButton.removeElement();
     }
-  }
+  };
 
-  #renderFilmBoard(){
-    if(this.#films.length === 0){
-      render(new FilmListEmptyView(), this.#mainContainer);
+  #renderFilmBoard = () => {
+    render(this.#moviesList, this.#mainContainer);
+    render(this.#moviesContainer, this.#moviesList.element);
+
+    this.#films.slice(0, this.#renderedFilmsCount).forEach((film) => {
+      this.#renderFilm(film, this.#moviesContainer.element);
+    });
+    if (this.#renderedFilmsCount <= FILM_COUNT) {
+      render(this.#showMoreButton, this.#moviesList.element);
+      this.#showMoreButton.element.addEventListener('click', this.#showMoreButtonHandler);
     } else {
-      render (this.#moviesList, this.#mainContainer);
-      render (this.#moviesContainer, this.#moviesList.element);
-      render (this.#showMoreButton, this.#moviesList.element);
+      render(new FilmListEmptyView(), this.#mainContainer);
     }
-  }
+  };
 }
