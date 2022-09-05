@@ -11,13 +11,13 @@ const headerElement = bodyElement.querySelector('.header__logo');
 const mainElement = bodyElement.querySelector('main');
 const footerElement = bodyElement.querySelector('.footer__statistics');
 
-const filmsPresenter = new FilmPresenter();
-
 const filmsModel = new FilmsModel();
 const commentsModel = new CommentsModel(filmsModel);
+
+const filmsPresenter = new FilmPresenter(mainElement, filmsModel, commentsModel);
 
 render (new UserProfileView(), headerElement);
 render (new FilterNavigationView(), mainElement);
 render (new FooterStatisticView(), footerElement);
 
-filmsPresenter.init(mainElement, filmsModel, commentsModel);
+filmsPresenter.init();

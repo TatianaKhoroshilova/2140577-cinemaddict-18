@@ -10,13 +10,13 @@ const createNavigationTemplate = () => (`  <nav class="main-navigation">
 export default class FilterNavigationView {
   #element = null;
 
-  getTemplate() {
+  get template() {
     return createNavigationTemplate();
   }
 
-  getElement() {
+  get element() {
     if(!this.#element) {
-      this.#element = createElement(this.getTemplate());
+      this.#element = createElement(this.template);
     }
 
     return this.#element;
