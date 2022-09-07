@@ -2,19 +2,19 @@ import { createElement } from '../render.js';
 import { formatMinutesToTime, formatToYear } from '../utils.js';
 
 
-const createFilmCardTemplate = ({filmInfo}) =>
+const createFilmCardTemplate = ({title, alternativeTitle, totalRating, release, date, runtime,genre, poster}) =>
   `
 <article class="film-card">
           <a class="film-card__link">
-            <h3 class="film-card__title">${filmInfo.title}</h3>
-            <p class="film-card__rating">${filmInfo.totalRating}</p>
+            <h3 class="film-card__title">${title}</h3>
+            <p class="film-card__rating">${totalRating}</p>
             <p class="film-card__info">
-              <span class="film-card__year">${formatToYear(filmInfo.release.date)}</span>
-              <span class="film-card__duration">${formatMinutesToTime(filmInfo.runtime)}</span>
-              <span class="film-card__genre">${filmInfo.genre}</span>
+              <span class="film-card__year">${formatToYear(release.date)}</span>
+              <span class="film-card__duration">${formatMinutesToTime(runtime)}</span>
+              <span class="film-card__genre">${genre}</span>
             </p>
-            <img src=${filmInfo.poster} alt="${filmInfo.alternativeTitle}" class="film-card__poster">
-            <p class="film-card__description">${filmInfo.alternativeTitle}</p>
+            <img src=${poster} alt="${alternativeTitle}" class="film-card__poster">
+            <p class="film-card__description">${alternativeTitle}</p>
             <span class="film-card__comments">18 comments</span>
           </a>
           <div class="film-card__controls">
