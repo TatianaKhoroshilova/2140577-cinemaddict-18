@@ -7,7 +7,7 @@ const createFilmCardTemplate = ({filmInfo}) => {
   const {
     title, alternativeTitle, totalRating, poster, runtime, genre, description
   } = filmInfo;
-
+console.log(filmInfo);
   return `
 <article class="film-card">
           <a class="film-card__link">
