@@ -1,7 +1,6 @@
 import { createElement } from '../render.js';
 import { formatMinutesToTime, formatToYear } from '../utils.js';
 
-
 const createFilmCardTemplate = ({title, alternativeTitle, totalRating, release, runtime,genre, poster}) =>
   `
 <article class="film-card">
