@@ -9,17 +9,16 @@ import { FILM_COUNT, STEP_PER_SCROLL } from '../const.js';
 
 export default class FilmPresenter {
 
-  #moviesList = new FilmsListView();
-  #moviesContainer = new FilmsContainerView();
-  #moviesCard = new FilmCardView(this.#films);
-  #showMoreButton = new ShowMoreButtonView();
-
   #filmDetailsComponent = null;
   #mainContainer = null;
   #filmsModel = null;
   #commentsModel = null;
   #films = [];
   #renderedFilmsCount = STEP_PER_SCROLL;
+
+  #moviesList = new FilmsListView();
+  #moviesContainer = new FilmsContainerView();
+  #showMoreButton = new ShowMoreButtonView();
 
   constructor (mainContainer, filmsModel, commentsModel) {
     this.#mainContainer = mainContainer;
@@ -43,7 +42,7 @@ export default class FilmPresenter {
       this.#addFilmDetailsComponent(film);
       document.addEventListener('keydown', this.#onEscKey);
     });
-    render (filmCardComponent, container.element);
+    render (filmCardComponent, container);
   }
 
   #renderFilmDetails(film) {
@@ -86,20 +85,20 @@ export default class FilmPresenter {
     this.#films
       .slice(this.#renderedFilmsCount, this.#renderedFilmsCount + STEP_PER_SCROLL)
       .forEach((film) => {
-        this.#renderFilm(film, this.#moviesList.element);
+        this.#renderFilm(film, this.#moviesContainer.element);
       });
 
     this.#renderedFilmsCount += STEP_PER_SCROLL;
-    if(this.#renderedFilmsCount >= this.#films.length){
+    if(this.#renderedFilmsCount >= FILM_COUNT){
       this.#showMoreButton.element.remove();
       this.#showMoreButton.removeElement();
     }
   };
 
   #renderFilmBoard = () => {
-    render(this.#moviesCard, this.#moviesList.element);
-    render(this.#moviesList, this.#mainContainer);
+
     render(this.#moviesContainer, this.#moviesList.element);
+    render(this.#moviesList, this.#mainContainer);
 
     this.#films.slice(0, this.#renderedFilmsCount).forEach((film) => {
       this.#renderFilm(film, this.#moviesContainer.element);
