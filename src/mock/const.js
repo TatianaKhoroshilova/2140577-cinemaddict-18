@@ -2,7 +2,7 @@ const NAME_AMOUNT = 2;
 
 const MAX_COMMENTS_FOR_FILM = 4;
 
-const COUNT_OF_FILMS = 5;
+const COUNT_OF_FILMS = 22;
 
 const AMOUNT_OF_GENRES_OF_FILM = {
   MIN: 1,

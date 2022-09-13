@@ -2,24 +2,19 @@ import { createElement } from '../render.js';
 import { year } from '../mock/const.js';
 import { formatMinutesToTime, getRandomInteger } from '../utils.js';
 
-
-const createFilmCardTemplate = ({filmInfo}) => {
-  const {
-    title, alternativeTitle, totalRating, poster, runtime, genre, description
-  } = filmInfo;
-
-  return `
+const createFilmCardTemplate = ({filmInfo}) =>
+  `
 <article class="film-card">
           <a class="film-card__link">
-            <h3 class="film-card__title">${title}</h3>
-            <p class="film-card__rating">${totalRating}</p>
+            <h3 class="film-card__title">${filmInfo.title}</h3>
+            <p class="film-card__rating">${filmInfo.totalRating}</p>
             <p class="film-card__info">
               <span class="film-card__year">${getRandomInteger(year.MIN, year.MAX)}</span>
-              <span class="film-card__duration">${formatMinutesToTime(runtime)}</span>
-              <span class="film-card__genre">${genre}</span>
+              <span class="film-card__duration">${formatMinutesToTime(filmInfo.runtime)}</span>
+              <span class="film-card__genre">${filmInfo.genre}</span>
             </p>
-            <img src=${poster} alt="${alternativeTitle}" class="film-card__poster">
-            <p class="film-card__description">${description}</p>
+            <img src=${filmInfo.poster} alt="${filmInfo.alternativeTitle}" class="film-card__poster">
+            <p class="film-card__description">${filmInfo.alternativeTitle}</p>
             <span class="film-card__comments">18 comments</span>
           </a>
           <div class="film-card__controls">
@@ -29,7 +24,6 @@ const createFilmCardTemplate = ({filmInfo}) => {
           </div>
         </article>
 `;
-};
 
 export default class FilmCardView {
   #element = null;

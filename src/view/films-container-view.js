@@ -9,13 +9,13 @@ const createFilmsContainerTemplate = () => (`
 export default class FilmsContainerView {
   #element = null;
 
-  getTemplate() {
+  get template() {
     return createFilmsContainerTemplate();
   }
 
-  getElement() {
+  get element() {
     if(!this.#element){
-      this.#element = createElement(this.getTemplate());
+      this.#element = createElement(this.template);
     }
 
     return this.#element;
