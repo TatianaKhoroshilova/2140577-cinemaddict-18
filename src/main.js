@@ -1,7 +1,7 @@
 import UserProfileView from './view/user-profile-view.js';
 import FilterNavigationView from './view/filter-navigation-view.js';
 import FooterStatisticView from './view/footer-statistic-view-temp.js';
-import {render} from './render.js';
+import { render } from './framework/render.js';
 import FilmPresenter from './presenter/film-presenter.js';
 import FilmsModel from './model/films-model.js';
 import CommentsModel from './model/comments-model.js';

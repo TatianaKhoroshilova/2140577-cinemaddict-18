@@ -3,7 +3,7 @@ import FilmsListView from '../view/films-list-view.js';
 import FilmsContainerView from '../view/films-container-view.js';
 import FilmCardView from '../view/film-card-view.js';
 import FilmListEmptyView from '../view/film-list-empty-view.js';
-import { render } from '../render.js';
+import { remove, render } from '../framework/render.js';
 import FilmDetailsView from '../view/film-details-view.js';
 import { FILM_COUNT, STEP_PER_SCROLL } from '../const.js';
 
@@ -36,10 +36,11 @@ export default class FilmPresenter {
 
   #renderFilm(film, container) {
     const filmCardComponent = new FilmCardView(film);
-    const filmCardElement = filmCardComponent.element.querySelector('.film-card__link');
 
-    filmCardElement.addEventListener('click', ()=>{
+    filmCardComponent.setClickHandler(() => {
+
       this.#addFilmDetailsComponent(film);
+
       document.addEventListener('keydown', this.#onEscKey);
     });
     render (filmCardComponent, container);
@@ -50,10 +51,10 @@ export default class FilmPresenter {
 
     this.#filmDetailsComponent = new FilmDetailsView(film, comments);
 
-    const closeButtonFilmDetails = this.#filmDetailsComponent.element.querySelector('.film-details__close-btn');
+    this.#filmDetailsComponent.setCloseButtonFilmDetailsClickHandler(() => {
 
-    closeButtonFilmDetails.addEventListener('click', ()=> {
       this.#removeFilmDetailsComponent();
+
       document.removeEventListener('keydown', this.#onEscKey);
     });
 
@@ -90,8 +91,7 @@ export default class FilmPresenter {
 
     this.#renderedFilmsCount += STEP_PER_SCROLL;
     if(this.#renderedFilmsCount >= FILM_COUNT){
-      this.#showMoreButton.element.remove();
-      this.#showMoreButton.removeElement();
+      remove(this.#showMoreButton);
     }
   };
 
