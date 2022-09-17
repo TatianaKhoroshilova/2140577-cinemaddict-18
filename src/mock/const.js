@@ -1,3 +1,5 @@
+import { getRandomInteger } from "../utils";
+
 const NAME_AMOUNT = 2;
 
 const MAX_COMMENTS_FOR_FILM = 4;

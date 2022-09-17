@@ -5,6 +5,7 @@ import { render } from './framework/render.js';
 import FilmPresenter from './presenter/film-presenter.js';
 import FilmsModel from './model/films-model.js';
 import CommentsModel from './model/comments-model.js';
+import { generateFilter } from './mock/filter.js';
 
 const bodyElement = document.querySelector('body');
 const headerElement = bodyElement.querySelector('.header__logo');
@@ -16,8 +17,10 @@ const commentsModel = new CommentsModel(filmsModel);
 
 const filmsPresenter = new FilmPresenter(mainElement, filmsModel, commentsModel);
 
+const filter = generateFilter();
+
 render (new UserProfileView(), headerElement);
-render (new FilterNavigationView(), mainElement);
+render (new FilterNavigationView(filter), mainElement);
 render (new FooterStatisticView(), footerElement);
 
 filmsPresenter.init();

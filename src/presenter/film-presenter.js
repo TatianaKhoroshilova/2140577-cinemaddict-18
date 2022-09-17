@@ -37,12 +37,11 @@ export default class FilmPresenter {
   #renderFilm(film, container) {
     const filmCardComponent = new FilmCardView(film);
 
-    filmCardComponent.setClickHandler(() => {
-
+    const addFilmDetailsClickHandler = () => {
       this.#addFilmDetailsComponent(film);
-
       document.addEventListener('keydown', this.#onEscKey);
-    });
+    };
+    filmCardComponent.setClickHandler(addFilmDetailsClickHandler);
     render (filmCardComponent, container);
   }
 
@@ -51,12 +50,12 @@ export default class FilmPresenter {
 
     this.#filmDetailsComponent = new FilmDetailsView(film, comments);
 
-    this.#filmDetailsComponent.setCloseButtonFilmDetailsClickHandler(() => {
-
+    const closeFilmDetailsClickHandler = () => {
       this.#removeFilmDetailsComponent();
-
       document.removeEventListener('keydown', this.#onEscKey);
-    });
+    };
+
+    this.#filmDetailsComponent.setCloseButtonFilmDetailsClickHandler(closeFilmDetailsClickHandler);
 
     render(this.#filmDetailsComponent, this.#mainContainer.parentElement);
   }
